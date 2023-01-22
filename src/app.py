@@ -1,18 +1,17 @@
 import discord
 from dotenv import load_dotenv
 import os
+import bot
 
 load_dotenv()
 token = os.getenv('DISCORD_BOT_TOKEN')
+intents = discord.Intents.all()
 
 
-class Bot(discord.Client):
-    async def on_ready(self):
-        print(f'Logged in as {self.user}!')
-
-    async def on_message(self, message):
-        print(f' Message from {message.author}: {message.content}')
+def main():
+    client = bot.Client(intents=intents)
+    client.run(token)
 
 
-client = Bot()
-client.run(token)
+if __name__ == "__main__":
+    main()
